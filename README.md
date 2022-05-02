@@ -6,6 +6,7 @@
 **Project Deployed on Heroku**
 
 **Management commands added**
+   These command use factory boy and faker to populate data
   1. populate_students (used to populate students)
 
   2. populate_schools (used to populate schools)
