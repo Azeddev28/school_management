@@ -1,9 +1,6 @@
 from factory.django import DjangoModelFactory
-from datetime import datetime
-import time
 
-def get_unique_timestamp():
-    return datetime.strftime(datetime.utcnow(), "%s")
+from api.users.utils.factory_utils import get_unique_timestamp
 
 
 class UserFactory(DjangoModelFactory):

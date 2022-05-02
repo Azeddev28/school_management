@@ -32,7 +32,6 @@ class StudentSerializer(serializers.ModelSerializer):
     age = serializers.CharField(source='student_age', required=False)
     school = SchoolStudentSerializer()
     user = UserSerializer()
-    # gender = GenderField(source='*')
 
     class Meta:
         model = Student
@@ -84,7 +83,7 @@ class StudentSerializer(serializers.ModelSerializer):
         return email
     
     def create(self, validated_data):
-        self.check_user_email(validated_data.get('user').get('email'))
+        self._check_user_email(validated_data.get('user').get('email'))
         user = self.__update_or_create_user(validated_data)
         if not user:
             return

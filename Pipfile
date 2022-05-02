@@ -19,6 +19,7 @@ Django = "==3.2.13"
 gunicorn = "*"
 django-heroku = "*"
 django-filter = "*"
+factory-boy = "*"
 
 [dev-packages]
 
