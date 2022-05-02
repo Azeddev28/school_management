@@ -155,7 +155,6 @@ LOGGING = {
         'console': {
             'level': 'DEBUG',
             'class': 'logging.StreamHandler',
-            'filters': ['require_debug_true'],
             'formatter': 'simple',
         },
         'log_file': {
@@ -177,8 +176,9 @@ LOGGING = {
     },
     'loggers': {
         'shool_logger': {
-            'handlers': ['console', 'log_file', 'error_file', 'mail_admins'],
+            'handlers': ['console', 'log_file', 'error_file'],
             'level': 'DEBUG',
+            'propagate': False
         },
     },
 }
