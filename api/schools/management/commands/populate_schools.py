@@ -12,4 +12,4 @@ class Command(BaseCommand):
 
     def handle(self, *args, **options):
         create_batch(School, 20, FACTORY_CLASS=SchoolFactory)
-        logging.info('Schools added successfully')
+        logger.info('Schools added successfully')
