@@ -137,5 +137,53 @@ REST_FRAMEWORK = {
     'PAGE_SIZE': 10
 }
 
+# LOGGING
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'formatters': {
+        'verbose': {
+            'format': '{asctime} {levelname} {filename} {funcName} {lineno} {message}',
+            'style': '{',
+        },
+        'simple': {
+            'format': '{asctime} {levelname} - {message}',
+            'style': '{',
+        },
+    },
+    'handlers': {
+        'console': {
+            'level': 'DEBUG',
+            'class': 'logging.StreamHandler',
+            'filters': ['require_debug_true'],
+            'formatter': 'simple',
+        },
+        'log_file': {
+            'level': 'DEBUG',
+            'class': 'logging.handlers.RotatingFileHandler',
+            'filename': 'school.log',
+            'maxBytes': 1024 * 1024 * 5,  # 5 mb
+            'backupCount': 5,
+            'formatter': 'verbose',
+        },
+        'error_file': {
+            'level': 'ERROR',
+            'class': 'logging.handlers.RotatingFileHandler',
+            'filename': 'school_error.log',
+            'maxBytes': 1024 * 1024 * 5,  # 5 mb
+            'backupCount': 5,
+            'formatter': 'verbose',
+        },
+    },
+    'loggers': {
+        'shool_logger': {
+            'handlers': ['console', 'log_file', 'error_file', 'mail_admins'],
+            'level': 'DEBUG',
+        },
+    },
+}
+
+
+
 # HEROKU SETTINGS
 django_heroku.settings(locals(), logging=False)

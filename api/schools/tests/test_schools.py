@@ -1,17 +1,11 @@
-from datetime import datetime
-import time
 from django.urls import reverse
 
 from rest_framework.test import APITestCase
 from rest_framework.status import HTTP_200_OK, HTTP_201_CREATED, HTTP_204_NO_CONTENT
 from api.schools.factories.school_factory import SchoolFactory
-from api.users.models import Student
 from factory import create_batch
 
-from api.users.factories.user_factory import UserFactory
 from api.schools.models import School
-from api.users.factories.student_factory import StudentFactory
-from api.users.factories.user_factory import UserFactory
 
 
 class SchoolModelViewSetTest(APITestCase):
@@ -35,7 +29,7 @@ class SchoolModelViewSetTest(APITestCase):
 
     def test_create_school(self):
         response = self.client.post(self.school_url, self.get_school_payload(), format='json')
-        self.assertEqual(response.status_code, HTTP_201_CREATED, "Couldn't create student")
+        self.assertEqual(response.status_code, HTTP_201_CREATED, "Couldn't create school")
 
     def test_patch_school(self):
         school_id = School.objects.first().id
