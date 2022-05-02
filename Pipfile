@@ -16,6 +16,8 @@ sqlparse = "==0.4.2"
 toml = "==0.10.2"
 typing-extensions = "==4.1.1"
 Django = "==3.2.13"
+gunicorn = "*"
+django-heroku = "*"
 
 [dev-packages]
 
