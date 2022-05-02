@@ -22,4 +22,4 @@ class Command(BaseCommand):
             user = UserFactory(email=f"{get_unique_timestamp()}@gmail.com")
             school = School.objects.order_by('?').first()
             student = StudentFactory(user=user, school=school)
-            logger.info(f'Student added successfully {student}')
+            logger.info(f'Student added successfully {student.id}')

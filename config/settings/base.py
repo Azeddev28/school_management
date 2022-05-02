@@ -175,10 +175,10 @@ LOGGING = {
         },
     },
     'loggers': {
-        'shool_logger': {
+        'school_logger': {
             'handlers': ['console', 'log_file', 'error_file'],
             'level': 'DEBUG',
-            'propagate': False
+            'propagate': True
         },
     },
 }
