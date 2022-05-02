@@ -1,16 +1,19 @@
+import logging
 from django.contrib.auth import get_user_model
 
 from rest_framework import serializers
 
 from api.schools.models import School
 from api.users.models import Student
-from api.users.serializer_fields.gender_field import GenderField
 from api.users.utils.constants import MAX_STUDENT_ERROR_MESSAGE, SCHOOL_NOT_FOUND_ERROR_MESSAGE
+
+logger = logging.getLogger('school_logger')
 
 User = get_user_model()
 
 
 class UserSerializer(serializers.ModelSerializer):
+    "User Serializer for user within Student Serializer"
     class Meta:
         fields = ['first_name', 'last_name', 'email']
         model = User
@@ -21,6 +24,7 @@ class UserSerializer(serializers.ModelSerializer):
 
 
 class SchoolStudentSerializer(serializers.ModelSerializer):
+    "Serializer for adding school within Student Serializer"
     uuid = serializers.CharField(required=True)
 
     class Meta:
@@ -29,6 +33,7 @@ class SchoolStudentSerializer(serializers.ModelSerializer):
 
 
 class StudentSerializer(serializers.ModelSerializer):
+    "Serializer to serializer student model"
     age = serializers.CharField(source='student_age', required=False)
     school = SchoolStudentSerializer()
     user = UserSerializer()
@@ -48,10 +53,11 @@ class StudentSerializer(serializers.ModelSerializer):
         school_uuid = school_data.get('uuid')
         school = self._fetch_school_by_uuid(school_uuid)
         if not school:
-            raise serializers.ValidationError(
-                detail=f"{SCHOOL_NOT_FOUND_ERROR_MESSAGE} {school_uuid}")
+            logger.error(f'{SCHOOL_NOT_FOUND_ERROR_MESSAGE} for school {school_uuid}')
+            raise serializers.ValidationError(detail=f"{SCHOOL_NOT_FOUND_ERROR_MESSAGE} {school_uuid}")
 
         if not self._can_add_student(school):
+            logger.error(f'{MAX_STUDENT_ERROR_MESSAGE} for school {school.id}')
             raise serializers.ValidationError(detail=MAX_STUDENT_ERROR_MESSAGE)
 
         attrs['school'] = school
@@ -79,6 +85,7 @@ class StudentSerializer(serializers.ModelSerializer):
     
     def _check_user_email(self, email):
         if User.objects.filter(email=email).exists():
+            logger.error(f'This email already exists {email}')
             raise serializers.ValidationError("This email already exists!.")
         return email
     

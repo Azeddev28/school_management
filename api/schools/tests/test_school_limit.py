@@ -36,7 +36,6 @@ class SchoolModelViewSetTest(APITestCase):
  
     def test_add_max_students(self):
         for count in range(0, self.MAX_STUDENTS):
-            print(count)
             response = self.client.post(self.student_url, self.get_student_payload(), format='json')
             self.assertEqual(response.status_code, HTTP_201_CREATED, "Couldn't create student")
 
