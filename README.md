@@ -1,4 +1,7 @@
 # All Setps have been completed alongwith the bonus part
+
+Add .env file to run project a template .env has been added for guidance
+
 **Test Cases Added**
 	 	
 		(run by : python manage test api)
