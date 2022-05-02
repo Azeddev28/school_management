@@ -1,18 +1,29 @@
-Test Cases Added
- (run by : python manage test api)
+# All Setps have been completed alongwith the bonus part
 
-Logging Added
+**Add .env file to run project a template .env has been added for guidance**
 
-Project Deployed on Heroku
+**Test Cases Added**
+	 	
+		(run by : python manage test api)
 
-Management commands added
-  1. populate_students (used to populate students)
+**Logging Added**
 
-  2. populate_schools (used to populate schools)
+**Project Deployed on Heroku**
+	
+	https://school-management-assessement.herokuapp.com/
 
-  run by python manage.py command_name
+**Management commands added**
+   
+	 	These command use factory boy and faker to populate data
+		
+		1. populate_students (used to populate students)
 
-Filtering added in viewsets Ordering, Search and Default Filter
+		2. populate_schools (used to populate schools)
 
-Added time tracking on clockify
+		run by python manage.py command_name
+
+**Filtering added in viewsets Ordering, Search and Default Filter**
+
+**Added time tracking on clockify**
+
     https://app.clockify.me/projects/626e88381541a91316370079
